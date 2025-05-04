@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Happy Dance",
-  // url: "https://happy-dance.vercel.app",
-  // ogImage: "https://happy-dance.vercel.app/og.jpg",
+  url: "https://happy-dance.vercel.app",
+  ogImage: "https://happy-dance.vercel.app/og.jpg",
   description:
     "A set of beautifully-designed, accessible components and a code distribution platform. Works with your favorite frameworks. Open Source. Open Code.",
   links: {

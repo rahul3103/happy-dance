@@ -1,8 +1,5 @@
 import Image from "next/image";
-import { Check, MoveRight } from "lucide-react";
-import Link from "next/link";
-import { cn } from "@workspace/ui/lib/utils";
-import { buttonVariants } from "@workspace/ui/components/button";
+import { Check } from "lucide-react";
 import { LinkButton } from "@/components/link-button";
 
 type RichTextData = {
