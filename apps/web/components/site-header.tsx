@@ -26,7 +26,9 @@ export function SiteHeader() {
           "before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:content-['']",
           "before:bg-background before:transition-transform before:duration-200 before:ease-in-out",
           showHeader ? "translate-y-0" : "-translate-y-full",
-          whiteBg ? "before:translate-y-0" : "before:translate-y-[-100%]",
+          whiteBg
+            ? "text-primary before:translate-y-0"
+            : "text-dark-foreground before:translate-y-[-100%]",
           !isOpen && whiteBg && "shadow-header",
         )}
       >
