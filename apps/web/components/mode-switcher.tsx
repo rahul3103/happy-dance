@@ -17,14 +17,14 @@ export function ModeSwitcher() {
     setMetaColor(
       resolvedTheme === "dark"
         ? META_THEME_COLORS.light
-        : META_THEME_COLORS.dark
+        : META_THEME_COLORS.dark,
     );
   }, [resolvedTheme, setTheme, setMetaColor]);
 
   return (
     <Button
       variant="ghost"
-      className="group/toggle h-8 w-8 px-0"
+      className="group/toggle pointer-events-auto h-8 w-8 cursor-pointer"
       onClick={toggleTheme}
     >
       <SunIcon className="hidden [html.dark_&]:block" />

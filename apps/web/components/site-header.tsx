@@ -4,8 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { siteConfig } from "@/config/site";
 import { Icons } from "@/components/icons";
-import { MainNav } from "@/components/main-nav";
-import { MobileNav } from "@/components/mobile-nav";
+import { MainNav } from "@/components/nav-comps/main-nav";
 import { ModeSwitcher } from "@/components/mode-switcher";
 import { Drawer } from "@workspace/ui/components/drawer";
 import { useLayoutRefs } from "@/contexts/layout-refs-context";
@@ -26,7 +25,7 @@ export function SiteHeader() {
           "before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:content-['']",
           "before:bg-background before:transition-transform before:duration-200 before:ease-in-out",
           showHeader ? "translate-y-0" : "-translate-y-full",
-          whiteBg
+          whiteBg || isOpen
             ? "text-primary before:translate-y-0"
             : "text-dark-foreground before:translate-y-[-100%]",
           !isOpen && whiteBg && "shadow-header",
@@ -37,8 +36,7 @@ export function SiteHeader() {
             <Icons.logo className="h-[37px] w-auto" />
             <span className="hidden">{siteConfig.name}</span>
           </Link>
-          <div className="flex items-center gap-4">
-            <MobileNav />
+          <div className="flex items-center lg:gap-4">
             <MainNav isOpen={isOpen} setIsOpen={setIsOpen} />
             <ModeSwitcher />
           </div>

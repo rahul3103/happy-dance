@@ -49,8 +49,8 @@ export interface MobileNavSection {
 
 /** Represents the detailed data associated with a specific top-level nav item ID. */
 export interface NavItemDetails {
-  megaMenu?: MegaMenuData; // Data for the desktop mega menu (if it exists)
-  mobileMenu?: MobileNavSection[]; // Data structure for the mobile dropdown (if it exists)
+  megaMenu: MegaMenuData; // Data for the desktop mega menu (if it exists)
+  mobileMenu: MobileNavSection[]; // Data structure for the mobile dropdown (if it exists)
   // If a top-level item could be JUST a link (no menu), you might add:
   // href?: string;
 }

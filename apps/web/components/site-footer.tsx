@@ -1,6 +1,12 @@
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { Icons } from "./icons";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@workspace/ui/components/accordion";
 
 const footerData = {
   navigation: [
@@ -98,39 +104,58 @@ export function SiteFooter() {
     <footer className="bg-dark-background text-dark-foreground bottom-0 z-0 -mt-24 pb-6 pt-32 lg:sticky">
       <div className="min-2xl:max-w-[1624px] mx-auto w-full px-5">
         <Icons.logo className="mb-8 h-auto w-full lg:mb-16" />
-        <ul className="mb-24 gap-10 lg:columns-5">
-          {footerData.navigation.map((section) => (
-            <li key={section.title} className="mb-8 break-inside-avoid">
-              <h3 className="mb-2 hidden text-[1.125rem] leading-[1.5] lg:block">
-                {section.title}
-              </h3>
-              <button
-                type="button"
-                className="hs-collapse-toggle mb-2 flex w-full items-center justify-between lg:hidden [&.open>.icon-sprite]:rotate-180"
-                data-hs-collapse={`#${section.title.toLowerCase().replace(/\s+/g, "-")}-collapse`}
+        <div className="mb-24 gap-10 lg:columns-5">
+          <Accordion type="single" collapsible className="lg:hidden">
+            {footerData.navigation.map((section) => (
+              <AccordionItem
+                key={section.title}
+                value={section.title}
+                className="border-none"
               >
-                {section.title}
-                <ChevronDown className="ml-2 h-4 w-4" aria-hidden="true" />
-              </button>
+                <AccordionTrigger className="cursor-pointer text-[1.125rem] leading-[1.5] hover:no-underline">
+                  {section.title}
+                </AccordionTrigger>
+                <AccordionContent>
+                  <ul className="space-y-2">
+                    {section.links.map((link) => (
+                      <li key={link.text}>
+                        <Link
+                          href={link.href}
+                          className="text-light-gray footer-nav-sub-link focus-state block text-[1.125rem] leading-[1.5] hover:underline"
+                        >
+                          {link.text}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
 
-              <ul
-                className="hidden w-full overflow-hidden lg:block lg:overflow-visible"
-                id={`${section.title.toLowerCase().replace(/\s+/g, "-")}-collapse`}
-              >
-                {section.links.map((link) => (
-                  <li key={link.text}>
-                    <Link
-                      href={link.href}
-                      className="text-light-gray footer-nav-sub-link focus-state mb-2 block text-[1.125rem] leading-[1.5] hover:underline"
-                    >
-                      {link.text}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
+          {/* Desktop view */}
+          <ul className="hidden lg:block">
+            {footerData.navigation.map((section) => (
+              <li key={section.title} className="mb-8 break-inside-avoid">
+                <h3 className="mb-2 text-[1.125rem] leading-[1.5]">
+                  {section.title}
+                </h3>
+                <ul className="w-full">
+                  {section.links.map((link) => (
+                    <li key={link.text}>
+                      <Link
+                        href={link.href}
+                        className="text-light-gray footer-nav-sub-link focus-state mb-2 block text-[1.125rem] leading-[1.5] hover:underline"
+                      >
+                        {link.text}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
       <div className="min-2xl:max-w-[1624px] mx-auto w-full px-5">
         <div className="relative mb-8 lg:mb-4">

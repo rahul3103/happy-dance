@@ -109,4 +109,17 @@ export const Icons = {
       />
     </svg>
   ),
+  hamburger: (props: IconProps) => (
+    <svg viewBox="0 0 100 100" {...props}>
+      <path
+        className="line top"
+        d="M70 33H30s-6 1.369-6 8.5 6 8.501 6 8.501L50 50"
+      />
+      <path className="line middle" d="M70 50H30" />
+      <path
+        className="line bottom"
+        d="M69.575 67.074h-40c-5.592 0-6.873-9.349 1.371-9.349S50 79.522 50 70V30"
+      />
+    </svg>
+  ),
 };
