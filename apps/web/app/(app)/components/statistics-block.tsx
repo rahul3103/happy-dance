@@ -36,9 +36,11 @@ const statisticsData: StatisticsData = {
 
 export function StatisticsBlock() {
   return (
-    <section className="section-statistics bg-dark-background text-dark-foreground rounded-b-3xl py-12 lg:py-24">
+    <section className="bg-dark-background text-dark-foreground relative z-20 rounded-b-3xl py-12 lg:py-24">
       <div className="min-2xl:max-w-[1624px] mx-auto w-full px-5">
-        <h2 className="heading-2-xs mb-5 lg:mb-12">{statisticsData.title}</h2>
+        <h2 className="mb-5 text-2xl leading-tight lg:mb-12 lg:text-[2.125rem]">
+          {statisticsData.title}
+        </h2>
 
         <div className="grid gap-4 lg:grid-cols-4">
           {statisticsData.statistics.map((stat, index) => (

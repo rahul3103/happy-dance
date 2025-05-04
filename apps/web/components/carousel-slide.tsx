@@ -38,7 +38,7 @@ export function CarouselSlide({ slide }: { slide: SlideData }) {
             </figcaption>
           </figure>
           <LinkButton
-            className="bg-light-background text-light-foreground hover:bg-dark-background hover:text-dark-foreground dark:hover:bg-input/100 z-10"
+            className="bg-light-background text-light-foreground hover:bg-dark-background hover:text-dark-foreground dark:hover:bg-input/100 z-10 w-full sm:w-auto"
             href="/platform"
           >
             Learn more

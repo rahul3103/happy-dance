@@ -30,7 +30,7 @@ const featuresData = {
 
 export function FeaturesBlock() {
   return (
-    <section className="py-12 lg:py-24">
+    <section className="my-12 lg:my-24">
       <div className="min-2xl:max-w-[1624px] mx-auto w-full px-5 lg:flex lg:gap-10">
         <div className="lg:w-4/12">
           <h2 className="mb-4 text-3xl font-semibold leading-tight lg:w-5/6 lg:text-[3.125rem] xl:w-2/3">

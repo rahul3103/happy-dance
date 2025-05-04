@@ -139,7 +139,11 @@ export function BlogPostsBlock() {
           ))}
         </div>
         <div className="mt-6 text-center lg:mt-8">
-          <LinkButton showIcon={false} href="/insights/posts/">
+          <LinkButton
+            showIcon={false}
+            href="/insights/posts/"
+            className="w-full sm:w-auto"
+          >
             View all posts
           </LinkButton>
         </div>

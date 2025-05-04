@@ -35,7 +35,7 @@ const awardsData = {
 
 export function AwardsBlock() {
   return (
-    <section className="overflow-hidden px-4 py-8 lg:py-14">
+    <section className="relative z-20 overflow-hidden px-4 py-8 lg:py-14">
       <div className="dark:bg-background min-2xl:max-w-[1624px] bg-beige relative mx-auto w-full rounded-3xl px-5 py-10 lg:py-16">
         <div className="mx-auto mb-10 text-center text-lg leading-[1.3] lg:mb-14 lg:w-8/12">
           <h2 className="mb-5 font-serif text-[2.625rem] font-normal leading-[1.1] lg:text-[4.375rem]">
@@ -51,10 +51,10 @@ export function AwardsBlock() {
             const Icon = Icons[award.icon as keyof typeof Icons];
             return (
               <div key={award.id} className="card-award">
-                <div className="relative flex h-[150px] w-[150px] items-center justify-center">
+                <div className="relative flex h-auto w-full items-center justify-center">
                   {award.icon && (
                     <Icon
-                      className="h-full w-full object-contain"
+                      className="h-auto w-[9.375rem] object-contain"
                       title={award.title}
                     />
                   )}

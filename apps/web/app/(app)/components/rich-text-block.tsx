@@ -3,6 +3,7 @@ import { Check, MoveRight } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@workspace/ui/lib/utils";
 import { buttonVariants } from "@workspace/ui/components/button";
+import { LinkButton } from "@/components/link-button";
 
 type RichTextData = {
   title: string;
@@ -51,7 +52,7 @@ const richTextData: RichTextData = {
 
 export function RichTextBlock() {
   return (
-    <section className="relative -z-10 -mt-8 overflow-hidden bg-[linear-gradient(to_top,#fffdf6_6.95%,#f9adb8_70.73%,#b397c5_94.87%)] py-12 lg:py-24 2xl:py-32 dark:bg-none dark:before:hidden">
+    <section className="relative z-10 -my-12 overflow-hidden bg-[linear-gradient(to_top,#fffdf6_6.95%,#f9adb8_70.73%,#b397c5_94.87%)] py-24 lg:-my-24 lg:py-48 2xl:py-32 dark:bg-none dark:before:hidden">
       <div className="min-2xl:max-w-[1624px] relative mx-auto w-full px-5">
         <div className="mb-7 text-center lg:mb-14">
           <p className="text-sm uppercase leading-[1.2] tracking-[.2em]">
@@ -96,16 +97,13 @@ export function RichTextBlock() {
                 ))}
               </ul>
             </div>
-            <Link
-              className={cn(
-                buttonVariants({ variant: "outline" }),
-                "border-1 border-primary bg-primary mt-8 h-auto rounded-full py-3 text-lg font-semibold leading-[1.3] text-white outline-2 transition-colors duration-500 ease-in-out has-[>svg]:px-6",
-              )}
+
+            <LinkButton
               href={richTextData.cta.href}
+              className="mt-8 w-full sm:w-auto"
             >
-              <span>{richTextData.cta.text}</span>
-              <MoveRight className="size-4" />
-            </Link>
+              {richTextData.cta.text}
+            </LinkButton>
           </div>
         </div>
       </div>

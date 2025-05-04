@@ -1,8 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
-import { MoveRight } from "lucide-react";
-import { buttonVariants } from "@workspace/ui/components/button";
-import { cn } from "@workspace/ui/lib/utils";
 import { LinkButton } from "@/components/link-button";
 
 const ctaData = {
@@ -11,9 +7,7 @@ const ctaData = {
     "Achieve higher completion rates, faster hiring cycles, and better recruitment outcomes with a Happydance careers website. Book a demo today.",
   image: {
     src: "/hand-shake-cta-llus.svg",
-    alt: "",
-    width: 600,
-    height: 400,
+    alt: "Handshake illustration",
   },
   link: "/book-a-demo/",
   linkText: "Book a demo",
@@ -48,24 +42,19 @@ export function CtaBlock() {
                 <Image
                   src={ctaData.image.src}
                   alt={ctaData.image.alt}
-                  width={ctaData.image.width}
-                  height={ctaData.image.height}
+                  width={600}
+                  height={400}
                   className="rounded-4xl"
                   data-test-id="cta-image"
                   priority
                 />
               </div>
-
-              <Link
+              <LinkButton
                 href={ctaData.link}
-                className={cn(
-                  buttonVariants({ variant: "outline" }),
-                  "border-1 border-primary bg-primary mb-3 mt-8 h-auto w-full rounded-full px-6 py-3 text-lg font-semibold leading-[1.3] text-white outline-2 transition-colors duration-500 ease-in-out has-[>svg]:px-6 lg:hidden",
-                )}
+                className="dark:hover:bg-input/100 mb-3 mt-8 w-full md:w-auto lg:hidden"
               >
-                <span>{ctaData.linkText}</span>
-                <MoveRight className="ml-2 size-4" aria-hidden="true" />
-              </Link>
+                {ctaData.linkText}
+              </LinkButton>
             </div>
           </div>
         </div>
