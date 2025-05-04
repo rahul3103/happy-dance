@@ -1,14 +1,14 @@
 import { createContext, useContext } from "react";
 
 interface LayoutVisibilityContextType {
-  hideHeader: boolean;
+  showHeader: boolean;
+  whiteBg: boolean;
 }
 
-const LayoutVisibilityContext = createContext<LayoutVisibilityContextType>({
-  hideHeader: false,
-});
+export const LayoutVisibilityContext =
+  createContext<LayoutVisibilityContextType>({
+    showHeader: true,
+    whiteBg: false,
+  });
 
-export const useHideHeader = () =>
-  useContext(LayoutVisibilityContext).hideHeader;
-
-export default LayoutVisibilityContext;
+export const useLayoutVisibility = () => useContext(LayoutVisibilityContext);

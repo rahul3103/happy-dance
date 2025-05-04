@@ -89,6 +89,7 @@
   --color-brand-orange: oklch(0.7251 0.2331 46.17);
   --color-blur-effect: oklch(0.7994 0.1268 354.81);
   --color-beige: oklch(0.9365 0.0285 84.88);
+  --shadow-header: 0px 0px 10px 4px rgba(0, 0, 0, 0.1);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);

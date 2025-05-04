@@ -5,10 +5,9 @@ interface LayoutRefsContextType {
   triggerRef: RefObject<HTMLDivElement | null>;
 }
 
-const LayoutRefsContext = createContext<LayoutRefsContextType>({
+export const LayoutRefsContext = createContext<LayoutRefsContextType>({
   headerRef: { current: null },
   triggerRef: { current: null },
 });
 
 export const useLayoutRefs = () => useContext(LayoutRefsContext);
-export default LayoutRefsContext;

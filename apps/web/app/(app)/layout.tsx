@@ -2,25 +2,24 @@
 
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { useHideHeaderOnScroll } from "@/hooks/use-hide-header-on-scroll";
-import LayoutRefsContext from "@/contexts/layout-refs-context";
-import LayoutVisibilityContext from "@/contexts/layout-visibility";
+import { useHeaderScroll } from "@/hooks/use-header-on-scroll";
+import {
+  LayoutRefsContext,
+  useLayoutRefs,
+} from "@/contexts/layout-refs-context";
+import { LayoutVisibilityContext } from "@/contexts/layout-visibility";
 
 interface AppLayoutProps {
   children: React.ReactNode;
 }
 
 export default function AppLayout({ children }: AppLayoutProps) {
-  const { headerRef, triggerRef, hideHeader } = useHideHeaderOnScroll();
+  const { headerRef, triggerRef } = useLayoutRefs();
+  const { showHeader, whiteBg } = useHeaderScroll(triggerRef, headerRef);
 
   return (
-    <LayoutVisibilityContext.Provider value={{ hideHeader: hideHeader }}>
-      <LayoutRefsContext.Provider
-        value={{
-          triggerRef,
-          headerRef,
-        }}
-      >
+    <LayoutVisibilityContext.Provider value={{ showHeader, whiteBg }}>
+      <LayoutRefsContext.Provider value={{ triggerRef, headerRef }}>
         <div className="border-grid flex flex-1 flex-col">
           <SiteHeader />
           <main className="bg-background z-1 rounded-4xl grid grid-cols-1 pb-8">
