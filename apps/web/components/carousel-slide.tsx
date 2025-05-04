@@ -1,9 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 import { SlideData } from "@/app/(app)/components/case-studies-block";
-import { Icons } from "./icons";
-import { buttonVariants } from "@workspace/ui/components/button";
-import { cn } from "@workspace/ui/lib/utils";
+import { LinkButton } from "./link-button";
 
 export function CarouselSlide({ slide }: { slide: SlideData }) {
   return (
@@ -40,19 +37,12 @@ export function CarouselSlide({ slide }: { slide: SlideData }) {
               </cite>
             </figcaption>
           </figure>
-          <Link
-            className={cn(
-              buttonVariants({ variant: "outline" }),
-              "border-primary bg-primary text-dark-foreground group z-10 mt-8 h-auto rounded-full border py-3 text-lg font-semibold leading-[1.3] outline-2 transition-colors duration-500 ease-in-out has-[>svg]:px-6",
-            )}
-            href="/platform/"
+          <LinkButton
+            className="bg-light-background text-light-foreground hover:bg-dark-background hover:text-dark-foreground dark:hover:bg-input/100 z-10"
+            href="/platform"
           >
-            <span className="relative mr-1 leading-[1.5]">Learn more</span>
-            <Icons.arrowRightLong
-              className="h-[13px] w-[15px] -translate-x-1 transition-transform duration-200 ease-in-out group-hover:translate-x-1"
-              aria-hidden="true"
-            />
-          </Link>
+            Learn more
+          </LinkButton>
         </div>
       </div>
     </div>

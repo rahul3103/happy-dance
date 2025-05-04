@@ -3,7 +3,7 @@ import Link from "next/link";
 import { MoveRight } from "lucide-react";
 import { buttonVariants } from "@workspace/ui/components/button";
 import { cn } from "@workspace/ui/lib/utils";
-import { Icons } from "@/components/icons";
+import { LinkButton } from "@/components/link-button";
 
 const ctaData = {
   title: "Ready to convert the right candidates?",
@@ -36,19 +36,12 @@ export function CtaBlock() {
               <p className="text-dark-foreground mb-2 text-lg lg:mb-11">
                 {ctaData.description}
               </p>
-              <Link
+              <LinkButton
+                className="dark:hover:bg-input/100 mt-8 hidden lg:inline-flex"
                 href={ctaData.link}
-                className={cn(
-                  buttonVariants({ variant: "outline" }),
-                  "border-1 border-primary bg-primary mt-8 hidden h-auto rounded-full px-6 py-3 text-lg font-semibold leading-[1.3] text-white outline-2 transition-colors duration-500 ease-in-out has-[>svg]:px-6 lg:inline-flex",
-                )}
               >
-                <span>{ctaData.linkText}</span>
-                <Icons.arrowRightLong
-                  className="ml-2 h-4 w-4"
-                  aria-hidden="true"
-                />
-              </Link>
+                {ctaData.linkText}
+              </LinkButton>
             </div>
             <div>
               <div className="relative mb-3 w-full lg:mb-0">
@@ -62,6 +55,7 @@ export function CtaBlock() {
                   priority
                 />
               </div>
+
               <Link
                 href={ctaData.link}
                 className={cn(

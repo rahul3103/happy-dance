@@ -1,20 +1,17 @@
 "use client";
 
-import { buttonVariants } from "@workspace/ui/components/button";
 import { cn } from "@workspace/ui/lib/utils";
-import { MoveRight } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { Icons } from "@/components/icons";
+import { LinkButton } from "@/components/link-button";
 
 function useThrottle(cb: () => void, limit: number) {
   const lastRun = useRef(Date.now());
 
   return function () {
     if (Date.now() - lastRun.current >= limit) {
-      cb(); // Execute the callback
-      lastRun.current = Date.now(); // Update last execution time
+      cb();
+      lastRun.current = Date.now();
     }
   };
 }
@@ -194,21 +191,9 @@ export function HighlightsBlock() {
                   <div className="prose text-muted-foreground text-lg font-normal leading-[1.3] xl:text-2xl xl:leading-[1.4]">
                     <p>{highlight.description}</p>
                   </div>
-                  <Link
-                    className={cn(
-                      buttonVariants({ variant: "outline" }),
-                      "border-primary bg-primary text-dark-foreground group mt-8 h-auto self-start rounded-full border py-3 text-lg font-semibold leading-[1.3] outline-2 transition-colors duration-500 ease-in-out has-[>svg]:px-6",
-                    )}
-                    href="/platform/"
-                  >
-                    <span className="relative mr-1 leading-[1.5]">
-                      Explore platform
-                    </span>
-                    <Icons.arrowRightLong
-                      className="h-[13px] w-[15px] -translate-x-1 transition-transform duration-200 ease-in-out group-hover:translate-x-1"
-                      aria-hidden="true"
-                    />
-                  </Link>
+                  <LinkButton className="self-start" href="/platform">
+                    Explore platform
+                  </LinkButton>
                 </div>
               </div>
             ))}

@@ -3,6 +3,7 @@ import { DrawerTrigger } from "@workspace/ui/components/drawer";
 import { cn } from "@workspace/ui/lib/utils";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
+import { LinkButton } from "../link-button";
 
 export function NavItem({
   handleClick,
@@ -16,9 +17,8 @@ export function NavItem({
   return (
     <ul className="flex flex-row items-center gap-4">
       {headerConfig.mainNavOrder.map((item) => {
-        // Check if this item ID has associated details (for menu trigger)
         const details = headerConfig.navItemDetails[item.id];
-        const hasMenu = details?.megaMenu || details?.mobileMenu; // Check if it should act as a trigger
+        const hasMenu = details?.megaMenu || details?.mobileMenu;
 
         return (
           <li key={item.id} className="relative">
@@ -32,7 +32,7 @@ export function NavItem({
                 aria-controls={`mega-menu-panel-${item.id}`}
                 className={cn(
                   "group/navitem pointer-events-auto flex cursor-pointer items-center gap-1 p-1 pr-7 underline-offset-4 hover:underline",
-                  isOpen && selectedItem === item.id ? "text-brand-orange" : "", // Example selected style
+                  isOpen && selectedItem === item.id ? "text-brand-orange" : "",
                 )}
               >
                 <span>{item.label}</span>
@@ -44,10 +44,8 @@ export function NavItem({
                 />
               </DrawerTrigger>
             ) : (
-              // Otherwise render as a simple link (assuming href exists)
               <Link
-                // href={details?.href || '#'} // Or get href from details if stored there
-                href={`/${item.id}`} // Assuming ID matches path for simple links
+                href={`/${item.id}`}
                 onClick={() => handleClick(item.id)}
                 className="group/navitem flex cursor-pointer items-center gap-1 p-1 underline-offset-4 hover:underline"
               >
@@ -57,15 +55,14 @@ export function NavItem({
           </li>
         );
       })}
-      {/* CTA Button */}
       <li className="relative" data-test-id="landing-page-link">
-        <Link
-          href="/demo"
-          className={cn(/* ... button classes ... */)}
-          onClick={() => handleClick("cta")} // Use a generic ID or different handling
+        <LinkButton
+          className="bg-brand-orange text-light-foreground border-brand-orange hover:border-primary dark:bg-brand-orange dark:border-brand-orange dark:hover:border-primary"
+          showIcon={false}
+          href="/"
         >
           Book a demo
-        </Link>
+        </LinkButton>
       </li>
     </ul>
   );

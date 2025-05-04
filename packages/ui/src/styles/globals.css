@@ -82,6 +82,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-light-background: oklch(0.9868 0.005 96.19);
+  --color-light-foreground: oklch(0.145 0 0);
   --color-dark-background: oklch(0.145 0 0);
   --color-dark-foreground: oklch(0.985 0 0);
   --color-light-gray: oklch(0.869 0.034 0);

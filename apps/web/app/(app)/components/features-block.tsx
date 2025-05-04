@@ -62,7 +62,9 @@ export function FeaturesBlock() {
               <h2 className="mb-3 text-[1.75rem] font-normal leading-[1.2] lg:text-[1.875rem]">
                 {feature.title}
               </h2>
-              <p className="text-muted text-lg">{feature.description}</p>
+              <p className="text-muted-foreground text-lg">
+                {feature.description}
+              </p>
             </div>
           ))}
         </div>

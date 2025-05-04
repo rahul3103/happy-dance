@@ -38,10 +38,7 @@ export function MainNav({
     }
   };
 
-  const handleOverlayClick = () => {
-    setSelectedItem(null);
-    setIsOpen(false);
-  };
+  const handleOverlayClick = () => setIsOpen(false);
 
   return (
     <nav className="hidden lg:block">

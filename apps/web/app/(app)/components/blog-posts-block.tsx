@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { buttonVariants } from "@workspace/ui/components/button";
 import { cn } from "@workspace/ui/lib/utils";
-
+import { LinkButton } from "@/components/link-button";
 const blogPosts = [
   {
     id: "hidden-taxes",
@@ -139,15 +139,9 @@ export function BlogPostsBlock() {
           ))}
         </div>
         <div className="mt-6 text-center lg:mt-8">
-          <Link
-            href="/insights/posts/"
-            className={cn(
-              buttonVariants({ variant: "outline" }),
-              "border-1 border-primary bg-primary mt-8 h-auto rounded-full px-6 py-3 text-lg font-semibold leading-[1.3] text-white outline-2 transition-colors duration-500 ease-in-out",
-            )}
-          >
+          <LinkButton showIcon={false} href="/insights/posts/">
             View all posts
-          </Link>
+          </LinkButton>
         </div>
       </div>
     </section>
