@@ -42,6 +42,7 @@ export function SiteHeader() {
           "border-grid z-51 fixed top-0 w-full bg-transparent transition-transform duration-300 ease-in-out",
           "before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:content-['']",
           "before:bg-background before:transition-transform before:duration-200 before:ease-in-out",
+          "dark:before:bg-background/95 dark:before:supports-[backdrop-filter]:bg-background/60 dark:before:backdrop-blur",
           showHeader ? "translate-y-0" : "-translate-y-full",
           whiteBg || isOpen
             ? "text-primary before:translate-y-0"
