@@ -204,26 +204,23 @@ function CarouselItem({
 }
 
 function DotButton(props: React.ComponentProps<typeof Button>) {
-  const { children, className, ...restProps } = props;
-
+  const { className, ...restProps } = props;
   return (
     <Button
       {...restProps}
-      className={cn(
-        "size-3.5 rounded-full cursor-pointer p-0 border-0",
-        className
-      )}
+      variant="ghost"
+      className={cn("group/toggle h-8 w-8 cursor-pointer p-0")}
     >
-      {children}
+      <span className={cn("w-3.5 h-3.5 rounded-full", className)} />
     </Button>
   );
 }
 
-function DotButtonGroup({ children, ...props }: React.ComponentProps<"div">) {
+function DotButtonGroup({ ...props }: React.ComponentProps<"div">) {
   const { selectedIndex, scrollSnaps, onDotButtonClick } = useCarousel();
 
   return (
-    <div {...props} className="flex gap-2 justify-center mt-6">
+    <div {...props} className="flex justify-center mt-6">
       {scrollSnaps.map((_, index) => (
         <DotButton
           aria-label={`Select slide ${index + 1}`}
