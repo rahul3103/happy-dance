@@ -4,6 +4,7 @@ import { cn } from "@workspace/ui/lib/utils";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { LinkButton } from "@/components/link-button";
+import { Highlight } from "@/types/homepage";
 
 function useThrottle(cb: () => void, limit: number) {
   const lastRun = useRef(Date.now());
@@ -16,49 +17,6 @@ function useThrottle(cb: () => void, limit: number) {
   };
 }
 
-const highlights = [
-  {
-    id: "id-1",
-    title: "High-performance websites",
-    image: "/high-performance-websites.jpg",
-    alt: "a screenshot of a website",
-    icon: "/high-performance-careers-websites.svg",
-    iconAlt: "a circular logo with a circle in the middle",
-    description:
-      "Optimized for speed, built for mobile, search-engine optimized, and AA compliant to deliver powerful candidate experiences.",
-  },
-  {
-    id: "id-2",
-    title: "Intuitive content management",
-    image: "/intuitive-content-management-1.jpg",
-    alt: "Intuitive Content Management",
-    icon: "/intuitive-content-management.svg",
-    iconAlt: "a logo of a browser",
-    description:
-      "Complete control to change every aspect of your careers website in real-time. No waiting. No additional costs.",
-  },
-  {
-    id: "id-3",
-    title: "Flexible configuration",
-    image: "/flexible-configuration-1.jpg",
-    alt: "Flexible Configuration",
-    icon: "/flexible-configuration.svg",
-    iconAlt: "a group of icons with different colors",
-    description:
-      "Customizable content blocks and UX-optimized designs to create a consistent, fully branded experience.",
-  },
-  {
-    id: "id-4",
-    title: "Intelligent features",
-    image: "/intelligent-features-1.jpg",
-    alt: "Intelligent Features",
-    icon: "/intelligent-features.svg",
-    iconAlt: "a logo of a company",
-    description:
-      "Built-in AI-powered tools to maximize talent-attraction efforts and brand performance at scale and pace.",
-  },
-];
-
 const INTERSECTION_ROOT_MARGIN_BOTTOM = "150px";
 const observerOptions: IntersectionObserverInit = {
   root: null,
@@ -66,7 +24,7 @@ const observerOptions: IntersectionObserverInit = {
   threshold: 0.5,
 };
 
-export function HighlightsBlock() {
+export function HighlightsBlock({ data }: { data: Highlight[] }) {
   const [progress, setProgress] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -83,7 +41,7 @@ export function HighlightsBlock() {
       (ref): ref is HTMLDivElement => ref !== null,
     );
 
-    if (validRefs.length !== highlights.length || observerRef.current) return;
+    if (validRefs.length !== data.length || observerRef.current) return;
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
@@ -153,7 +111,7 @@ export function HighlightsBlock() {
       <div className="min-2xl:max-w-[1624px] relative isolate mx-auto w-full px-5">
         <div className="relative lg:grid lg:grid-cols-2 lg:gap-10">
           <div ref={leftColumnRef} className="col-span-1 grid gap-10">
-            {highlights.map((highlight, index) => (
+            {data.map((highlight, index) => (
               <div
                 key={highlight.id}
                 className="grid items-center gap-7 lg:h-screen"
@@ -191,8 +149,11 @@ export function HighlightsBlock() {
                   <div className="prose text-muted-foreground text-lg font-normal leading-[1.3] xl:text-2xl xl:leading-[1.4]">
                     <p>{highlight.description}</p>
                   </div>
-                  <LinkButton className="self-start" href="/platform">
-                    Explore platform
+                  <LinkButton
+                    className="self-start"
+                    href={highlight.button.href}
+                  >
+                    {highlight.button.text}
                   </LinkButton>
                 </div>
               </div>
@@ -203,7 +164,7 @@ export function HighlightsBlock() {
             ref={stickyContainerRef}
             className="sticky top-0 col-span-1 grid h-screen items-center max-lg:hidden"
           >
-            {highlights.map((highlight, index) => (
+            {data.map((highlight, index) => (
               <div
                 key={highlight.id}
                 className={cn(
