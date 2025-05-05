@@ -1,33 +1,16 @@
-"use client";
+import { NavigationConfig } from "@/types/navigation";
+import { AppLayout } from "./app-layout/index";
 
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
-import { useHeaderScroll } from "@/hooks/use-header-on-scroll";
-import {
-  LayoutRefsContext,
-  useLayoutRefs,
-} from "@/contexts/layout-refs-context";
-import { LayoutVisibilityContext } from "@/contexts/layout-visibility";
-
-interface AppLayoutProps {
+export default async function Layout({
+  children,
+}: {
   children: React.ReactNode;
-}
+}) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/navigation`, {
+    next: { revalidate: false },
+    cache: "force-cache",
+  });
+  const data: NavigationConfig = await res.json();
 
-export default function AppLayout({ children }: AppLayoutProps) {
-  const { headerRef, triggerRef } = useLayoutRefs();
-  const { showHeader, whiteBg } = useHeaderScroll(triggerRef, headerRef);
-
-  return (
-    <LayoutVisibilityContext.Provider value={{ showHeader, whiteBg }}>
-      <LayoutRefsContext.Provider value={{ triggerRef, headerRef }}>
-        <div className="border-grid flex flex-1 flex-col">
-          <SiteHeader />
-          <main className="bg-background z-1 rounded-4xl grid grid-cols-1 pb-8">
-            {children}
-          </main>
-          <SiteFooter />
-        </div>
-      </LayoutRefsContext.Provider>
-    </LayoutVisibilityContext.Provider>
-  );
+  return <AppLayout navigationConfig={data}>{children}</AppLayout>;
 }

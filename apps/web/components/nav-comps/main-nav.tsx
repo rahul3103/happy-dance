@@ -1,20 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { headerConfig, NavItemDetails } from "@/config/header";
 import { NavItem } from "./nav-items";
 import { NavContent } from "./nav-content";
 import { DrawerContent, DrawerTitle } from "@workspace/ui/components/drawer";
-
 import { MobileNav } from "../mobile-nav";
 import { NavMobileContent } from "./nav-mobile-content";
+import { capitalize } from "@workspace/ui/lib/capitalize";
+import { NavigationConfig } from "@/types/navigation";
 
-type NavItemId =
-  | "platform"
-  | "solutions"
-  | "company"
-  | "resources"
-  | "mobile-nav";
+type NavItemId = NavigationConfig["mainNavOrder"][number]["id"] | "mobile-nav";
 
 export function MainNav({
   setIsOpen,
@@ -25,9 +20,6 @@ export function MainNav({
 }) {
   const [selectedItem, setSelectedItem] = useState<NavItemId>("platform");
 
-  const selectedNavDetails: NavItemDetails | undefined =
-    headerConfig.navItemDetails[selectedItem];
-
   const handleClick = (itemId: string) => {
     if (!itemId) return;
     if (selectedItem === itemId && isOpen) setIsOpen(false);
@@ -36,13 +28,12 @@ export function MainNav({
       setIsOpen(true);
     }
   };
+  const handleOverlayClick = () => setIsOpen(false);
+
   const title =
     selectedItem === "mobile-nav"
       ? "Mobile Navigation Menu"
-      : (headerConfig.mainNavOrder.find((item) => item.id === selectedItem)
-          ?.label ?? "");
-
-  const handleOverlayClick = () => setIsOpen(false);
+      : capitalize(selectedItem);
 
   return (
     <>
@@ -60,7 +51,7 @@ export function MainNav({
         className="pointer-events-auto outline-none data-[vaul-drawer-direction=top]:max-h-screen"
         onOverlayClick={handleOverlayClick}
       >
-        <NavContent selectedNavDetails={selectedNavDetails} />
+        <NavContent selectedNavId={selectedItem} />
         <NavMobileContent />
       </DrawerContent>
     </>

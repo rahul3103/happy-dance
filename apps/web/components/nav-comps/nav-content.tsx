@@ -1,14 +1,20 @@
-import { NavItemDetails } from "@/config/header";
+"use client";
+
 import { cn } from "@workspace/ui/lib/utils";
 import Link from "next/link";
 import { NavImage } from "./nav-image";
+import { useNavigation } from "@/contexts/navigation-context";
 
 export function NavContent({
-  selectedNavDetails,
+  selectedNavId,
 }: {
-  selectedNavDetails: NavItemDetails | null | undefined;
+  selectedNavId: string | null | undefined;
 }) {
+  const navigationConfig = useNavigation();
+  if (!selectedNavId) return null;
+  const selectedNavDetails = navigationConfig?.navItemDetails[selectedNavId];
   if (!selectedNavDetails) return null;
+
   return (
     <div
       role="region"

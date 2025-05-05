@@ -1,8 +1,8 @@
-import { headerConfig } from "@/config/header";
 import { DrawerTrigger } from "@workspace/ui/components/drawer";
 import { cn } from "@workspace/ui/lib/utils";
 import { ChevronDown } from "lucide-react";
 import { LinkButton } from "../link-button";
+import { useNavigation } from "@/contexts/navigation-context";
 
 export function NavItem({
   handleClick,
@@ -13,9 +13,10 @@ export function NavItem({
   isOpen: boolean;
   selectedItem: string | null;
 }) {
+  const navigationConfig = useNavigation();
   return (
     <ul className="flex flex-row items-center gap-4">
-      {headerConfig.mainNavOrder.map((item) => (
+      {navigationConfig?.mainNavOrder.map((item) => (
         <li key={item.id} className="relative">
           <DrawerTrigger
             onClick={(e) => {

@@ -1,82 +1,12 @@
-/**
- * src/config/header.ts
- *
- * Configuration file for the main header navigation.
- * Defines the structure, labels, links, and associated menu data.
- */
+import { NavigationConfig } from "@/types/navigation";
 
-// ============================================================================
-// Interface Definitions
-// ============================================================================
-
-/** Represents a single navigation link. */
-export interface NavLink {
-  label: string; // The visible text of the link
-  href: string; // The target URL
-  description?: string; // Optional descriptive text (used in mega menus)
-  isExternal?: boolean; // Flag for links opening in a new tab
-}
-
-/** Represents a column within the desktop mega menu. */
-export interface MegaMenuColumn {
-  heading?: string; // Optional heading displayed above the links
-  links: NavLink[]; // Array of links within this column
-}
-
-/** Represents the featured Call-to-Action block within a mega menu. */
-export interface FeaturedCTA {
-  type: "caseStudy" | "insight" | "custom"; // Differentiates CTA types if needed for styling/logic
-  heading: string; // Heading for the CTA section (e.g., "Featured Case Study")
-  title: string; // Main title of the featured item (e.g., "Domino's")
-  image: {
-    src: string; // Image source URL (Next/Image handles optimization)
-    alt: string; // Alt text for the image
-  };
-  href: string; // Link URL for the CTA
-}
-
-/** Represents the entire data structure for a single item's desktop mega menu. */
-export interface MegaMenuData {
-  columns: MegaMenuColumn[]; // An array of columns to display
-  featuredCTA?: FeaturedCTA; // An optional featured CTA block
-}
-
-/** Represents a section within the mobile navigation dropdown/accordion. */
-export interface MobileNavSection {
-  heading?: string; // Optional heading for the section
-  links: NavLink[]; // Array of links within this section (usually simpler, no descriptions)
-}
-
-/** Represents the detailed data associated with a specific top-level nav item ID. */
-export interface NavItemDetails {
-  megaMenu: MegaMenuData; // Data for the desktop mega menu (if it exists)
-  mobileMenu: MobileNavSection[]; // Data structure for the mobile dropdown (if it exists)
-  // If a top-level item could be JUST a link (no menu), you might add:
-  // href?: string;
-}
-
-/** Represents the overall header configuration structure. */
-export interface HeaderConfig {
-  /** Defines the order and labels of top-level navigation items shown in the header bar. */
-  mainNavOrder: Array<{ id: string; label: string }>;
-
-  /** Maps unique navigation item IDs to their detailed menu data (mega menu, mobile menu, etc.). */
-  navItemDetails: Record<string, NavItemDetails>;
-}
-
-// ============================================================================
-// Configuration Data
-// ============================================================================
-
-export const headerConfig: HeaderConfig = {
+const navigationData: NavigationConfig = {
   // 1. Define the order and labels for the main navigation bar
   mainNavOrder: [
     { id: "platform", label: "Platform" },
     { id: "solutions", label: "Solutions" },
     { id: "company", label: "Company" },
     { id: "resources", label: "Resources" },
-    // Example of an item that might be just a link:
-    // { id: "contact", label: "Contact Us" },
   ],
 
   // 2. Define the detailed menu data for each item ID listed above
@@ -139,7 +69,6 @@ export const headerConfig: HeaderConfig = {
       },
       mobileMenu: [
         {
-          // No heading needed if label matches top-level
           links: [{ label: "Careers website platform", href: "/platform/" }],
         },
         {
@@ -213,7 +142,7 @@ export const headerConfig: HeaderConfig = {
         },
       },
       mobileMenu: [
-        { links: [{ label: "Our solutions", href: "/solutions/" }] }, // Using top-level label implicitly
+        { links: [{ label: "Our solutions", href: "/solutions/" }] },
         {
           heading: "MORE DETAIL",
           links: [
@@ -252,7 +181,7 @@ export const headerConfig: HeaderConfig = {
               {
                 label: "The News Desk",
                 href: "/the-news-desk/",
-                description: "Find out what’s happening at Happydance.",
+                description: "Find out what's happening at Happydance.",
               },
               {
                 label: "Careers",
@@ -262,13 +191,12 @@ export const headerConfig: HeaderConfig = {
               },
             ],
           },
-          // Only one column for links in this example
         ],
         featuredCTA: {
-          type: "insight", // Different CTA type
+          type: "insight",
           heading: "Featured insight",
           title:
-            "Employee experience: Laura’s diverse role creating a joyful working environment",
+            "Employee experience: Laura's diverse role creating a joyful working environment",
           image: {
             src: "/laura-spotlight.jpg",
             alt: "a person smiling for the camera",
@@ -278,7 +206,6 @@ export const headerConfig: HeaderConfig = {
       },
       mobileMenu: [
         {
-          // No heading needed, using top-level label
           links: [
             { label: "Why Happydance?", href: "/why-happydance/" },
             { label: "About us", href: "/about-us/" },
@@ -319,7 +246,7 @@ export const headerConfig: HeaderConfig = {
                 href: "https://academy.happydance.love/pages/home",
                 description: "Explore our expert-led employer-brand courses.",
                 isExternal: true,
-              }, // Mark external
+              },
             ],
           },
           {
@@ -340,7 +267,6 @@ export const headerConfig: HeaderConfig = {
             ],
           },
         ],
-        // No featured CTA in this example
       },
       mobileMenu: [
         {
@@ -365,11 +291,9 @@ export const headerConfig: HeaderConfig = {
         },
       ],
     },
-
-    // --- Example: Contact Item (No Menu) ---
-    // "contact": {
-    //   // No megaMenu or mobileMenu needed if it's just a link
-    //   // The component logic would see no menu data and render a direct <Link href="/contact">
-    // },
   },
 };
+
+export async function GET(): Promise<Response> {
+  return Response.json(navigationData);
+}
