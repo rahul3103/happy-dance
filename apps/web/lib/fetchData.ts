@@ -1,18 +1,24 @@
+import { ApiResponse } from "@/types/api-response";
+
 export async function fetchData<T>(
-  url: string,
+  path: string,
   options?: RequestInit,
 ): Promise<T> {
   try {
-    const res = await fetch(url, options);
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}${path}`,
+      options,
+    );
 
     if (!res.ok) {
-      console.error(`Error fetching ${url}: ${res.status} ${res.statusText}`);
+      console.error(`Error fetching ${path}: ${res.status} ${res.statusText}`);
       return null as T;
     }
 
-    return (await res.json()) as T;
+    const json = (await res.json()) as ApiResponse<T>;
+    return json.record;
   } catch (error) {
-    console.error(`Network or parsing error fetching ${url}:`, error);
+    console.error(`Network or parsing error fetching ${path}:`, error);
     return null as T;
   }
 }

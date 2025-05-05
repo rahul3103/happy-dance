@@ -1,11 +1,12 @@
 import { Blocks } from "./components/blocks";
 import { HomepageData } from "@/types/homepage";
+import { fetchData } from "@/lib/fetchData";
+import { docsConfig } from "@/config/docs";
 
 export default async function Page() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/homepage`, {
+  const data = await fetchData<HomepageData>(docsConfig.homepage, {
     next: { revalidate: false },
     cache: "force-cache",
   });
-  const data: HomepageData = await res.json();
   return <Blocks {...data} />;
 }

@@ -16,7 +16,6 @@ export function NavItem({
   selectedItem: string | null;
 }) {
   const { navigationConfig } = useNavigation();
-
   if (!navigationConfig) return null;
 
   return (

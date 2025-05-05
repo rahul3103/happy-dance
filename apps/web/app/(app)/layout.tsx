@@ -2,6 +2,7 @@ import { NavigationConfig } from "@/types/navigation";
 import { FooterConfig } from "@/types/footer";
 import { AppLayout } from "./app-layout/index";
 import { fetchData } from "@/lib/fetchData";
+import { docsConfig } from "@/config/docs";
 
 export default async function Layout({
   children,
@@ -9,20 +10,14 @@ export default async function Layout({
   children: React.ReactNode;
 }) {
   const [navigationData, footerData] = await Promise.all([
-    fetchData<NavigationConfig | null>(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/navigation`,
-      {
-        next: { revalidate: false, tags: ["layout", "navigation"] },
-        cache: "force-cache",
-      },
-    ),
-    fetchData<FooterConfig | null>(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/footer`,
-      {
-        next: { revalidate: false, tags: ["layout", "footer"] },
-        cache: "force-cache",
-      },
-    ),
+    fetchData<NavigationConfig | null>(docsConfig.navigation, {
+      next: { revalidate: false, tags: ["layout", "navigation"] },
+      cache: "force-cache",
+    }),
+    fetchData<FooterConfig | null>(docsConfig.footer, {
+      next: { revalidate: false, tags: ["layout", "footer"] },
+      cache: "force-cache",
+    }),
   ]);
 
   if (!navigationData || !footerData) {
