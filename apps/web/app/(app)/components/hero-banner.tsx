@@ -34,15 +34,9 @@ const LogoRow = ({ logos }: { logos: Logo[] }) => (
     {logos.map((logo) => (
       <div
         key={logo.alt}
-        className="flex h-10 shrink-0 flex-col items-center justify-center opacity-100 invert"
+        className="relative h-[30px] w-[100px] shrink-0 invert md:w-[130px]"
       >
-        <Image
-          alt={logo.alt}
-          src={logo.src}
-          width={130}
-          height={40}
-          className="inline-flex h-full max-h-[30px] w-full max-w-[100px] shrink-0 md:max-w-[130px]"
-        />
+        <Image alt={logo.alt} src={logo.src} fill className="object-contain" />
       </div>
     ))}
   </div>
@@ -96,7 +90,7 @@ export function HeroBanner({ data }: { data: HeroData }) {
           loop={true}
           muted={true}
           playsInline={true}
-          poster="/happydance-showreel.jpg"
+          poster="/happydance-showreel.avif"
           aria-label="Background video of the happydance showreal, no sound or text"
         >
           <source src="/intro.mp4" type="video/mp4" />

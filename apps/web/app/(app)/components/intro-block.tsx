@@ -21,7 +21,7 @@ export function IntroBlock({ data }: { data: IntroData }) {
             <div className="max-w-52 lg:max-w-none">
               <Image
                 alt={data.image.alt}
-                className="rounded-4xl mx-auto"
+                className="rounded-4xl mx-auto h-auto w-full"
                 height={245}
                 src={data.image.src}
                 width={326}

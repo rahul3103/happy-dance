@@ -33,13 +33,13 @@ export function AwardsBlock({ data }: { data: AwardsData }) {
           })}
         </div>
 
-        <div className="absolute -left-48 top-12 hidden max-h-full lg:block">
+        <div className="absolute -left-48 top-12 hidden lg:block">
           <Image
             src="/awards-shape-1.svg"
             alt="Awards Shape 1"
-            fill
-            sizes="326px"
-            className="object-contain"
+            height={391}
+            width={326}
+            className="h-auto w-auto object-contain"
             aria-hidden="true"
           />
         </div>
@@ -47,9 +47,9 @@ export function AwardsBlock({ data }: { data: AwardsData }) {
           <Image
             src="/awards-shape-2.svg"
             alt="Awards Shape 2"
-            fill
-            sizes="515px"
-            className="object-contain"
+            width={515}
+            height={257}
+            className="h-auto w-auto object-contain"
             aria-hidden="true"
           />
         </div>

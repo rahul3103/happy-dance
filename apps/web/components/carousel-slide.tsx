@@ -12,6 +12,7 @@ export function CarouselSlide({ slide }: { slide: Slide }) {
             alt={slide.logo.alt}
             width={150}
             height={150}
+            className="h-auto w-full object-contain"
           />
         </div>
         <div className="relative aspect-[4/3] w-full rounded-2xl lg:rounded-3xl xl:aspect-auto">
@@ -20,7 +21,7 @@ export function CarouselSlide({ slide }: { slide: Slide }) {
             alt={slide.image.alt}
             height={675}
             width={1200}
-            className="object-cover"
+            className="h-auto w-full object-cover"
           />
         </div>
       </div>
