@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Icons } from "@/components/icons";
-import Link from "next/link";
+import { BaseLink } from "@/components/base-link";
 import { NavItemDetails } from "@/types/navigation";
 
 interface FeaturedCTAProps {
@@ -42,7 +42,7 @@ export function NavImage({ ctaData }: FeaturedCTAProps) {
           />
         </div>
         <div className="w-full px-6 py-8" data-test-id="featured-cta-details">
-          <Link
+          <BaseLink
             href={ctaData.href}
             className="before:absolute before:inset-0 before:block before:content-['']"
             data-test-id="featured-cta-link"
@@ -53,7 +53,7 @@ export function NavImage({ ctaData }: FeaturedCTAProps) {
             >
               {ctaData.title}
             </h3>
-          </Link>
+          </BaseLink>
           <span
             aria-hidden="true"
             className="inline-flex items-center gap-1.5 text-lg text-[#ff784a] group-hover:underline"

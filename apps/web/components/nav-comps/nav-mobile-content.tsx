@@ -4,8 +4,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@workspace/ui/components/accordion";
-import Link from "next/link";
 import { useNavigation } from "@/contexts/navigation-context";
+import { BaseLink } from "../base-link";
 
 export function NavMobileContent() {
   const { navigationConfig } = useNavigation();
@@ -33,14 +33,14 @@ export function NavMobileContent() {
                       <ul className="space-y-1">
                         {section.links.map((link) => (
                           <li key={link.href}>
-                            <Link
+                            <BaseLink
                               href={link.href}
                               className="group block py-3 hover:underline"
                             >
                               <span className="text-muted-foreground block text-lg group-focus-visible:underline">
                                 {link.label}
                               </span>
-                            </Link>
+                            </BaseLink>
                           </li>
                         ))}
                       </ul>

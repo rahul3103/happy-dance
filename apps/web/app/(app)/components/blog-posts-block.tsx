@@ -1,10 +1,10 @@
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { buttonVariants } from "@workspace/ui/components/button";
 import { cn } from "@workspace/ui/lib/utils";
 import { LinkButton } from "@/components/link-button";
 import { BlogContent } from "@/types/homepage";
+import { BaseLink } from "@/components/base-link";
 
 export function BlogPostsBlock({ data }: { data: BlogContent }) {
   return (
@@ -35,7 +35,7 @@ export function BlogPostsBlock({ data }: { data: BlogContent }) {
                   <h2 className="mb-3 text-2xl font-normal leading-[1.5] lg:mb-5">
                     {post.title}
                   </h2>
-                  <Link
+                  <BaseLink
                     href={post.link}
                     className={cn(
                       buttonVariants({ variant: "link" }),
@@ -44,9 +44,9 @@ export function BlogPostsBlock({ data }: { data: BlogContent }) {
                   >
                     {data.readMore}
                     <ArrowRight className="size-4" aria-hidden="true" />
-                  </Link>
+                  </BaseLink>
                 </div>
-                <Link
+                <BaseLink
                   href={post.author.link}
                   className="mt-4 flex gap-3 text-lg"
                   aria-label={`See other posts from ${post.author.name}`}
@@ -66,7 +66,7 @@ export function BlogPostsBlock({ data }: { data: BlogContent }) {
                     </span>
                     <span className="block">{post.author.role}</span>
                   </div>
-                </Link>
+                </BaseLink>
               </div>
             </div>
           ))}

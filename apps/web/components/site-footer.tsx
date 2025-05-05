@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Icons } from "./icons";
 import {
   Accordion,
@@ -7,6 +6,7 @@ import {
   AccordionTrigger,
 } from "@workspace/ui/components/accordion";
 import { useNavigation } from "@/contexts/navigation-context";
+import { BaseLink } from "@/components/base-link";
 
 export function SiteFooter() {
   const { footerConfig } = useNavigation();
@@ -30,12 +30,12 @@ export function SiteFooter() {
                   <ul className="space-y-2">
                     {section.links.map((link) => (
                       <li key={link.text}>
-                        <Link
+                        <BaseLink
                           href={link.href}
                           className="text-light-gray footer-nav-sub-link focus-state block text-[1.125rem] leading-[1.5] hover:underline"
                         >
                           {link.text}
-                        </Link>
+                        </BaseLink>
                       </li>
                     ))}
                   </ul>
@@ -54,12 +54,12 @@ export function SiteFooter() {
                 <ul className="w-full">
                   {section.links.map((link) => (
                     <li key={link.text}>
-                      <Link
+                      <BaseLink
                         href={link.href}
                         className="text-light-gray footer-nav-sub-link focus-state mb-2 block text-[1.125rem] leading-[1.5] hover:underline"
                       >
                         {link.text}
-                      </Link>
+                      </BaseLink>
                     </li>
                   ))}
                 </ul>
@@ -77,14 +77,14 @@ export function SiteFooter() {
             <ul className="gap-4 lg:flex">
               {footerConfig.bottomLinks.map((link) => (
                 <li key={link.text}>
-                  <Link
+                  <BaseLink
                     href={link.href}
                     className="focus-state mb-2 block text-[1.125rem] leading-[1.5] hover:underline lg:mb-0"
                     target={link.href.startsWith("http") ? "_blank" : undefined}
                     rel={link.href.startsWith("http") ? "noopener" : undefined}
                   >
                     {link.text}
-                  </Link>
+                  </BaseLink>
                 </li>
               ))}
             </ul>
@@ -98,7 +98,7 @@ export function SiteFooter() {
                     const Icon = Icons[social.icon as keyof typeof Icons];
                     return (
                       <li key={social.name} className="social-item">
-                        <Link
+                        <BaseLink
                           href={social.href}
                           className="focus-state block"
                           target="_blank"
@@ -106,7 +106,7 @@ export function SiteFooter() {
                           aria-label={`${social.name} (Opens in new window)`}
                         >
                           <Icon className="size-8" />
-                        </Link>
+                        </BaseLink>
                       </li>
                     );
                   })}

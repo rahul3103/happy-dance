@@ -1,14 +1,10 @@
-import Link, { LinkProps } from "next/link";
 import { cn } from "@workspace/ui/lib/utils";
 import { Icons } from "./icons";
 import { buttonVariants } from "@workspace/ui/components/button";
+import { BaseLink, BaseLinkProps } from "./base-link";
 
-export interface LinkButtonProps
-  extends LinkProps,
-    Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href"> {
+interface LinkButtonProps extends BaseLinkProps {
   showIcon?: boolean;
-  children: React.ReactNode;
-  className?: string;
 }
 
 export const LinkButton = ({
@@ -19,7 +15,7 @@ export const LinkButton = ({
   ...props
 }: LinkButtonProps) => {
   return (
-    <Link
+    <BaseLink
       href={href}
       className={cn(
         buttonVariants({ variant: "outline" }),
@@ -41,6 +37,6 @@ export const LinkButton = ({
           data-icon-position="right"
         />
       )}
-    </Link>
+    </BaseLink>
   );
 };

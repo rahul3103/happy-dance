@@ -1,9 +1,9 @@
 "use client";
 
 import { cn } from "@workspace/ui/lib/utils";
-import Link from "next/link";
 import { NavImage } from "./nav-image";
 import { useNavigation } from "@/contexts/navigation-context";
+import { BaseLink } from "@/components/base-link";
 
 export function NavContent({
   selectedNavId,
@@ -44,7 +44,7 @@ export function NavContent({
               {/* Map over the LINKS within the column */}
               {column.links.map((link, linkIndex) => (
                 <li key={linkIndex} data-test-id="secondary-nav-item-link">
-                  <Link
+                  <BaseLink
                     className="group/navitem group block"
                     href={link.href}
                     target={link.isExternal ? "_blank" : undefined}
@@ -60,7 +60,7 @@ export function NavContent({
                         </span>
                       )}
                     </span>
-                  </Link>
+                  </BaseLink>
                 </li>
               ))}
             </ul>
