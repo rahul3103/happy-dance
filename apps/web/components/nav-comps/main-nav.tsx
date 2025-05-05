@@ -37,7 +37,7 @@ export function MainNav({
 
   return (
     <>
-      <MobileNav handleClick={handleClick} />
+      <MobileNav handleClick={handleClick} isOpen={isOpen} />
       <nav className="hidden lg:block">
         <NavItem
           handleClick={handleClick}
