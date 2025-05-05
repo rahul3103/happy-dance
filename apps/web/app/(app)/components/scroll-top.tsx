@@ -1,4 +1,5 @@
 import { Icons } from "@/components/icons";
+import { useThrottle } from "@/hooks/use-throttle";
 import { cn } from "@workspace/ui/lib/utils";
 import { useEffect, useRef, useState } from "react";
 
@@ -8,7 +9,7 @@ const observerOptions: IntersectionObserverInit = {
   rootMargin: `0px 0px ${INTERSECTION_ROOT_MARGIN_BOTTOM} 0px`,
   threshold: 0.01,
 };
-
+const THROTTLE_LIMIT = 100;
 interface ScrollTopProps {
   containerRef: React.RefObject<HTMLDivElement | null>;
 }
@@ -16,13 +17,13 @@ interface ScrollTopProps {
 export function ScrollTop({ containerRef }: ScrollTopProps) {
   const [scrolled, setScrolled] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
-
+  const throttledSetScrolled = useThrottle(setScrolled, THROTTLE_LIMIT);
   useEffect(() => {
     if (!containerRef?.current) return;
     const observerCallback: IntersectionObserverCallback = (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) setScrolled(true);
-        else setScrolled(false);
+        if (entry.isIntersecting) throttledSetScrolled(true);
+        else throttledSetScrolled(false);
       });
     };
 
@@ -37,7 +38,7 @@ export function ScrollTop({ containerRef }: ScrollTopProps) {
       observerRef.current?.disconnect();
       observerRef.current = null;
     };
-  }, [containerRef]);
+  }, [containerRef, throttledSetScrolled]);
 
   const handleScrollToTop = () =>
     window.scrollTo({
