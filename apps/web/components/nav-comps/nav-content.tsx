@@ -10,7 +10,7 @@ export function NavContent({
 }: {
   selectedNavId: string | null | undefined;
 }) {
-  const navigationConfig = useNavigation();
+  const { navigationConfig } = useNavigation();
   if (!selectedNavId) return null;
   const selectedNavDetails = navigationConfig?.navItemDetails[selectedNavId];
   if (!selectedNavDetails) return null;

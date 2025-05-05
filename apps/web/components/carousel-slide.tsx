@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { SlideData } from "@/app/(app)/components/case-studies-block";
 import { LinkButton } from "./link-button";
+import { Slide } from "@/types/homepage";
 
-export function CarouselSlide({ slide }: { slide: SlideData }) {
+export function CarouselSlide({ slide }: { slide: Slide }) {
   return (
     <div className="relative">
       <div className="relative mb-6 overflow-hidden rounded-2xl from-[#B3ADAD]/40 after:absolute after:left-0 after:top-0 after:h-1/2 after:w-full after:bg-gradient-to-b after:mix-blend-multiply after:content-[''] lg:rounded-3xl">

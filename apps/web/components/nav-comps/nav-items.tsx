@@ -1,3 +1,5 @@
+"use client";
+
 import { DrawerTrigger } from "@workspace/ui/components/drawer";
 import { cn } from "@workspace/ui/lib/utils";
 import { ChevronDown } from "lucide-react";
@@ -13,10 +15,13 @@ export function NavItem({
   isOpen: boolean;
   selectedItem: string | null;
 }) {
-  const navigationConfig = useNavigation();
+  const { navigationConfig } = useNavigation();
+
+  if (!navigationConfig) return null;
+
   return (
     <ul className="flex flex-row items-center gap-4">
-      {navigationConfig?.mainNavOrder.map((item) => (
+      {navigationConfig.mainNavOrder.map((item) => (
         <li key={item.id} className="relative">
           <DrawerTrigger
             onClick={(e) => {

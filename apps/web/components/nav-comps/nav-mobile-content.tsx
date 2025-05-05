@@ -8,7 +8,7 @@ import Link from "next/link";
 import { useNavigation } from "@/contexts/navigation-context";
 
 export function NavMobileContent() {
-  const navigationConfig = useNavigation();
+  const { navigationConfig } = useNavigation();
   if (!navigationConfig) return null;
   return (
     <div className="mt-20 h-screen overflow-auto p-6 lg:hidden">

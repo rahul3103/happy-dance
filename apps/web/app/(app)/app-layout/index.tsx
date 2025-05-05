@@ -10,18 +10,24 @@ import {
 import { LayoutVisibilityContext } from "@/contexts/layout-visibility";
 import { NavigationContext } from "@/contexts/navigation-context";
 import { NavigationConfig } from "@/types/navigation";
+import { FooterConfig } from "@/types/footer";
 
 interface AppLayoutProps {
   children: React.ReactNode;
   navigationConfig: NavigationConfig;
+  footerConfig: FooterConfig;
 }
 
-export function AppLayout({ children, navigationConfig }: AppLayoutProps) {
+export function AppLayout({
+  children,
+  navigationConfig,
+  footerConfig,
+}: AppLayoutProps) {
   const { headerRef, triggerRef } = useLayoutRefs();
   const { showHeader, whiteBg } = useHeaderScroll(triggerRef, headerRef);
 
   return (
-    <NavigationContext.Provider value={navigationConfig}>
+    <NavigationContext.Provider value={{ navigationConfig, footerConfig }}>
       <LayoutVisibilityContext.Provider value={{ showHeader, whiteBg }}>
         <LayoutRefsContext.Provider value={{ triggerRef, headerRef }}>
           <div className="border-grid flex flex-1 flex-col">
