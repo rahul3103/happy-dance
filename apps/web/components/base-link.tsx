@@ -7,13 +7,15 @@ export interface BaseLinkProps extends LinkProps {
   rel?: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function BaseLink({ children, href, ...props }: BaseLinkProps) {
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+type OnNavigateEventHandler = (event: { preventDefault: () => void }) => void;
+
+export function BaseLink({ children, ...props }: BaseLinkProps) {
+  const handleNavigate: OnNavigateEventHandler = (e) => {
     e.preventDefault();
   };
+
   return (
-    <Link href="" onClick={handleClick} {...props}>
+    <Link prefetch={false} onNavigate={handleNavigate} {...props}>
       {children}
     </Link>
   );
