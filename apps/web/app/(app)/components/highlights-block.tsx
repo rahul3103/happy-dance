@@ -66,7 +66,7 @@ export function HighlightsBlock({ data }: { data: Highlight[] }) {
       observerRef.current?.disconnect();
       observerRef.current = null;
     };
-  }, []);
+  }, [data.length]);
 
   function handleScroll() {
     // Get refs

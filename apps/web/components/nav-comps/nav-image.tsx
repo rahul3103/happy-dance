@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { Icons } from "@/components/icons";
-import { NavItemDetails } from "@/config/header";
 import Link from "next/link";
+import { NavItemDetails } from "@/types/navigation";
 
 interface FeaturedCTAProps {
-  ctaData: NonNullable<NavItemDetails["megaMenu"]>["featuredCTA"]; // Type for CTA data
+  ctaData: NonNullable<NavItemDetails["megaMenu"]>["featuredCTA"];
 }
 
 export function NavImage({ ctaData }: FeaturedCTAProps) {
@@ -12,7 +12,7 @@ export function NavImage({ ctaData }: FeaturedCTAProps) {
 
   return (
     <div
-      className="col-span-2 col-start-7 flex flex-col gap-4" // Example grid placement
+      className="col-span-2 col-start-7 flex flex-col gap-4"
       data-js-control="mega-menu-cta"
       data-test-id={`featured-${ctaData.type}`}
     >
