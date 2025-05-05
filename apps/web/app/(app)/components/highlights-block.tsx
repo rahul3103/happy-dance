@@ -5,17 +5,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { LinkButton } from "@/components/link-button";
 import { Highlight } from "@/types/homepage";
-
-function useThrottle(cb: () => void, limit: number) {
-  const lastRun = useRef(Date.now());
-
-  return function () {
-    if (Date.now() - lastRun.current >= limit) {
-      cb();
-      lastRun.current = Date.now();
-    }
-  };
-}
+import { useThrottle } from "@/hooks/use-throttle";
 
 const INTERSECTION_ROOT_MARGIN_BOTTOM = "150px";
 const observerOptions: IntersectionObserverInit = {
