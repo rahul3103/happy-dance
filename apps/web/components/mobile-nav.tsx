@@ -24,7 +24,7 @@ export function MobileNav({
       <Button
         onClick={() => handleClick("mobile-nav")}
         variant="ghost"
-        className="group/toggle pointer-events-auto h-8 w-8 cursor-pointer"
+        className="group/toggle pointer-events-auto h-8 w-8 cursor-pointer lg:hidden"
       >
         <X className={cn("hidden size-5", isOpen && "block")} />
         <Menu className={cn("hidden size-5", !isOpen && "block")} />
