@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { siteConfig } from "@/config/site";
 import { Icons } from "@/components/icons";
 import { MainNav } from "@/components/nav-comps/main-nav";
@@ -15,6 +15,24 @@ export function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const { headerRef } = useLayoutRefs();
   const { showHeader, whiteBg } = useLayoutVisibility();
+
+  useEffect(() => {
+    const headerEl = headerRef.current;
+    if (!headerEl || !isOpen) return;
+
+    const observer = new MutationObserver(() => {
+      if (headerEl.getAttribute("aria-hidden") === "true") {
+        headerEl.setAttribute("aria-hidden", "false");
+      }
+    });
+
+    observer.observe(headerEl, {
+      attributes: true,
+      attributeFilter: ["aria-hidden"],
+    });
+
+    return () => observer.disconnect();
+  }, [isOpen, headerRef]);
 
   return (
     <Drawer direction="top" modal={true} open={isOpen}>
