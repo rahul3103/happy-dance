@@ -1,6 +1,6 @@
 "use client";
 
-import { DrawerTrigger } from "@workspace/ui/components/drawer";
+import { SheetTrigger } from "@workspace/ui/components/sheet";
 import { cn } from "@workspace/ui/lib/utils";
 import { ChevronDown } from "lucide-react";
 import { LinkButton } from "../link-button";
@@ -22,7 +22,7 @@ export function NavItem({
     <ul className="flex flex-row items-center gap-4">
       {navigationConfig.mainNavOrder.map((item) => (
         <li key={item.id} className="relative">
-          <DrawerTrigger
+          <SheetTrigger
             onClick={(e) => {
               e.preventDefault();
               handleClick(item.id);
@@ -41,7 +41,7 @@ export function NavItem({
                 isOpen && selectedItem === item.id ? "rotate-180" : "",
               )}
             />
-          </DrawerTrigger>
+          </SheetTrigger>
         </li>
       ))}
       <li className="relative" data-test-id="landing-page-link">

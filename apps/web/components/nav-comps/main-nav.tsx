@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { NavItem } from "./nav-items";
 import { NavContent } from "./nav-content";
-import { DrawerContent, DrawerTitle } from "@workspace/ui/components/drawer";
+import { SheetContent, SheetTitle } from "@workspace/ui/components/sheet";
 import { MobileNav } from "../mobile-nav";
 import { NavMobileContent } from "./nav-mobile-content";
 import { capitalize } from "@workspace/ui/lib/capitalize";
@@ -44,16 +44,17 @@ export function MainNav({
           isOpen={isOpen}
           selectedItem={selectedItem}
         />
-        <DrawerTitle className="sr-only">{title}</DrawerTitle>
+        <SheetTitle className="sr-only">{title}</SheetTitle>
       </nav>
-      <DrawerContent
+      <SheetContent
+        side="top"
         aria-describedby={undefined}
-        className="pointer-events-auto outline-none data-[vaul-drawer-direction=top]:max-h-screen"
+        className="lg:rounded-4xl pointer-events-auto outline-none"
         onOverlayClick={handleOverlayClick}
       >
         <NavContent selectedNavId={selectedItem} />
         <NavMobileContent />
-      </DrawerContent>
+      </SheetContent>
     </>
   );
 }

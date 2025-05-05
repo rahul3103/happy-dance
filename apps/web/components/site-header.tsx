@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { siteConfig } from "@/config/site";
 import { Icons } from "@/components/icons";
 import { MainNav } from "@/components/nav-comps/main-nav";
 import { ModeSwitcher } from "@/components/mode-switcher";
-import { Drawer } from "@workspace/ui/components/drawer";
+import { Sheet } from "@workspace/ui/components/sheet";
 import { useLayoutRefs } from "@/contexts/layout-refs-context";
 import { cn } from "@workspace/ui/lib/utils";
 import { useLayoutVisibility } from "@/contexts/layout-visibility";
@@ -16,26 +16,8 @@ export function SiteHeader() {
   const { headerRef } = useLayoutRefs();
   const { showHeader, whiteBg } = useLayoutVisibility();
 
-  useEffect(() => {
-    const headerEl = headerRef.current;
-    if (!headerEl || !isOpen) return;
-
-    const observer = new MutationObserver(() => {
-      if (headerEl.getAttribute("aria-hidden") === "true") {
-        headerEl.setAttribute("aria-hidden", "false");
-      }
-    });
-
-    observer.observe(headerEl, {
-      attributes: true,
-      attributeFilter: ["aria-hidden"],
-    });
-
-    return () => observer.disconnect();
-  }, [isOpen, headerRef]);
-
   return (
-    <Drawer direction="top" modal={true} open={isOpen}>
+    <Sheet open={isOpen}>
       <header
         ref={headerRef}
         className={cn(
@@ -61,6 +43,6 @@ export function SiteHeader() {
           </div>
         </div>
       </header>
-    </Drawer>
+    </Sheet>
   );
 }
