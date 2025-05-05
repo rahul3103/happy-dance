@@ -12,16 +12,16 @@ export function CarouselSlide({ slide }: { slide: Slide }) {
             alt={slide.logo.alt}
             width={150}
             height={150}
-            className="h-auto w-full object-contain"
+            className="h-auto w-[150px] object-contain"
           />
         </div>
-        <div className="relative aspect-[4/3] w-full rounded-2xl lg:rounded-3xl xl:aspect-auto">
+        <div className="relative aspect-square w-full xl:aspect-video">
           <Image
             src={slide.image.src}
             alt={slide.image.alt}
-            height={675}
-            width={1200}
-            className="h-auto w-full object-cover"
+            fill
+            className="object-cover"
+            sizes="(min-width: 1024px) 50vw, 100vw"
           />
         </div>
       </div>
@@ -40,7 +40,7 @@ export function CarouselSlide({ slide }: { slide: Slide }) {
           </figure>
           <LinkButton
             className="bg-light-background text-light-foreground hover:bg-dark-background hover:text-dark-foreground dark:hover:bg-input/100 z-10 w-full sm:w-auto"
-            href="/platform"
+            href={slide.link}
           >
             Learn more
           </LinkButton>
