@@ -18,12 +18,12 @@ export function ScrollTop({ containerRef }: ScrollTopProps) {
   const [scrolled, setScrolled] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const throttledSetScrolled = useThrottle(setScrolled, THROTTLE_LIMIT);
+
   useEffect(() => {
     if (!containerRef?.current) return;
     const observerCallback: IntersectionObserverCallback = (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) throttledSetScrolled(true);
-        else throttledSetScrolled(false);
+        throttledSetScrolled(entry.isIntersecting);
       });
     };
 
@@ -51,11 +51,14 @@ export function ScrollTop({ containerRef }: ScrollTopProps) {
     <div className="sticky bottom-20 z-[99] flex h-0 justify-end overflow-x-clip pr-6">
       <button
         onClick={handleScrollToTop}
+        style={{
+          transform: scrolled ? "translateX(0)" : "translateX(200%)",
+          opacity: scrolled ? 1 : 0,
+        }}
         className={cn(
-          "bg-brand-orange group z-[100] flex size-14 cursor-pointer items-center justify-center rounded-full text-black opacity-0 transition-transform duration-200 ease-[cubic-bezier(.5,.85,.25,1.8)]",
-          scrolled
-            ? "translate-x-0 opacity-100"
-            : "translate-x-[200%] opacity-0",
+          "bg-brand-orange text-light-foreground group z-[100] flex size-14 cursor-pointer items-center justify-center rounded-full",
+          "transition-[transform,opacity] duration-200 ease-in-out",
+          "will-change-transform",
         )}
         aria-label="Scroll to top"
       >
