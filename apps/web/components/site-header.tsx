@@ -51,8 +51,8 @@ export function SiteHeader() {
       >
         <div className="min-2xl:max-w-[1624px] mx-auto flex w-full max-w-full items-center justify-between px-4 py-[18px] lg:py-5">
           <Link href="/" className="focus-state block p-1">
-            <Icons.logo className="h-[37px] w-auto" />
-            <span className="hidden">{siteConfig.name}</span>
+            <Icons.logo className="h-[27px] w-auto lg:h-[37px]" />
+            <span className="sr-only">{siteConfig.name}</span>
           </Link>
           <div className="flex items-center lg:gap-4">
             <MainNav isOpen={isOpen} setIsOpen={setIsOpen} />

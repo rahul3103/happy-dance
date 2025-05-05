@@ -226,6 +226,7 @@ function DotButtonGroup({ children, ...props }: React.ComponentProps<"div">) {
     <div {...props} className="flex gap-2 justify-center mt-6">
       {scrollSnaps.map((_, index) => (
         <DotButton
+          aria-label={`Select slide ${index + 1}`}
           key={index}
           onClick={() => onDotButtonClick(index)}
           className={cn(
