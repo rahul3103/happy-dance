@@ -7,12 +7,13 @@ export interface BaseLinkProps extends LinkProps {
   rel?: string;
 }
 
-export function BaseLink({ children, ...props }: BaseLinkProps) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function BaseLink({ children, href, ...props }: BaseLinkProps) {
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
   };
   return (
-    <Link onClick={handleClick} {...props}>
+    <Link href="" onClick={handleClick} {...props}>
       {children}
     </Link>
   );
