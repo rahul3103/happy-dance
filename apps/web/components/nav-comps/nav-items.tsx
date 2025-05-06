@@ -44,7 +44,7 @@ export function NavItem({
           </SheetTrigger>
         </li>
       ))}
-      <li className="relative" data-test-id="landing-page-link">
+      <li className="relative">
         <LinkButton
           className="bg-brand-orange text-light-foreground border-brand-orange hover:border-primary dark:bg-brand-orange dark:border-brand-orange dark:hover:border-primary pointer-events-auto"
           showIcon={false}

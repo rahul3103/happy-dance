@@ -14,10 +14,7 @@ export function CaseStudiesBlock({ data }: { data: CaseStudiesData }) {
     <section className="bg-dark-background text-dark-foreground overflow-hidden rounded-t-3xl py-16 lg:py-32">
       <div className="mx-auto w-full px-5">
         <div className="mx-auto mb-10 text-center text-lg font-normal leading-[1.3] lg:mb-14 lg:w-1/2">
-          <h2
-            className="mb-5 text-balance font-serif text-[2.625rem] font-normal leading-[1.1] lg:text-[4.375rem]"
-            data-test-id="case-studies-heading"
-          >
+          <h2 className="mb-5 text-balance font-serif text-[2.625rem] font-normal leading-[1.1] lg:text-[4.375rem]">
             {data.title}
           </h2>
         </div>

@@ -34,7 +34,6 @@ export function CtaBlock({ data }: { data: CtaData }) {
                   width={600}
                   height={400}
                   className="rounded-4xl"
-                  data-test-id="cta-image"
                 />
               </div>
               <LinkButton

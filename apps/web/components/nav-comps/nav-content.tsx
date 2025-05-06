@@ -1,5 +1,5 @@
 "use client";
-
+import { motion } from "framer-motion";
 import { cn } from "@workspace/ui/lib/utils";
 import { NavImage } from "./nav-image";
 import { useNavigation } from "@/contexts/navigation-context";
@@ -28,7 +28,6 @@ export function NavContent({
               column.links.length > 3 ? "col-span-4" : "col-span-2",
             )}
             key={column.heading || `col-${colIndex}`}
-            data-test-id="secondary-nav-item"
           >
             {column.heading && (
               <span className="block text-sm uppercase leading-[1.2] tracking-[.2em]">
@@ -43,7 +42,16 @@ export function NavContent({
             >
               {/* Map over the LINKS within the column */}
               {column.links.map((link, linkIndex) => (
-                <li key={linkIndex} data-test-id="secondary-nav-item-link">
+                <motion.li
+                  key={linkIndex}
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{
+                    duration: 0.2,
+                    ease: "easeOut",
+                    delay: linkIndex * 0.1,
+                  }}
+                >
                   <BaseLink
                     className="group/navitem group block"
                     href={link.href}
@@ -61,7 +69,7 @@ export function NavContent({
                       )}
                     </span>
                   </BaseLink>
-                </li>
+                </motion.li>
               ))}
             </ul>
           </nav>
